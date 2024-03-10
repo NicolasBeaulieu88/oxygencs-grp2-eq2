@@ -89,7 +89,6 @@ class App:
     def save_event_to_database(self, timestamp, temperature):
         """Save sensor data into database."""
         try:
-            # To implement
             if self._db_connection is not None:
                 action = None
                 if float(temperature) >= float(self.T_MAX):
