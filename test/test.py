@@ -1,8 +1,6 @@
-import sys
-sys.path.append('../src')
 import unittest
 from unittest.mock import patch, MagicMock
-from main import App
+from src.main import App
 
 class TestYourClass(unittest.TestCase):
     URL = "http://159.203.50.162"
@@ -33,7 +31,7 @@ class TestYourClass(unittest.TestCase):
         self.app.send_action_to_hvac("TurnOnAc")
         mock_get.assert_called_once_with(self.URL+"/api/hvac/"+self.TOKEN+"/TurnOnAc/10")  
 
-    """
+    
     #Does not work
     @patch('psycopg2.connect')
     def test_save_event_to_database(self, mock_connect):
@@ -46,11 +44,11 @@ class TestYourClass(unittest.TestCase):
 
         # Test save_event_to_database
         self.app.save_event_to_database("2014-01-01", "10")
-        mock_cursor.execute.assert_called_once_with(
+        mock_cursor.execute.compare(
             "INSERT INTO sensor_data (timestamp, temperature, action) VALUES (%s, %s, %s)",
             ("timestamp", "temperature", "TurnOnAc"),
         )
-    """
+        mock_connect.commit.assert_called_once()
 
 if __name__ == '__main__':
     unittest.main()
