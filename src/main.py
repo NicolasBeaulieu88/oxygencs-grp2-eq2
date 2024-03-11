@@ -91,10 +91,22 @@ class App:
     def save_event_to_database(self, timestamp, temperature):
         """Save sensor data into database."""
         try:
-            # To implement
-            pass
-        except requests.exceptions.RequestException as e:
-            # To implement
+            if self._db_connection is not None:
+                action = None
+                if float(temperature) >= float(self.T_MAX):
+                    action = "TurnOnAc"
+                elif float(temperature) <= float(self.T_MIN):
+                    action = "TurnOnHeater"
+                cur = self._db_connection.cursor()
+                cur.execute(
+                    "INSERT INTO sensor_data (timestamp, temperature, action) VALUES (%s, %s, %s)",
+                    (timestamp, temperature, action),
+                )
+                self._db_connection.commit()
+                cur.close()
+            else:
+                print("No database connection available.")
+        except (Exception, psycopg2.DatabaseError) as e:
             print(f"An error occurred: {e}")
             pass
 
