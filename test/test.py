@@ -3,7 +3,7 @@ from unittest.mock import patch, MagicMock
 from src.main import App
 
 
-class TestYourClass(unittest.TestCase):
+class TestMain(unittest.TestCase):
     URL = "http://159.203.50.162"
     TOKEN = "e7026c64578833bfc1ba"
     TICKS = 10

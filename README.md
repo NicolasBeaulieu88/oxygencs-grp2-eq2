@@ -35,6 +35,9 @@ To run the app on your machine, you need to setup the following variables in you
 - T_MAX: The maximum allowed temperature.
 - T_MIN: The minimum allowed temperature.
 - DATABASE_URL: The database connection URL.
+- DATABASE_NAME: The name of the database that will be used
+- DATABASE_USER: The user that will connect to the database
+- DATABASE_PASSWORD: the password for the provided user of the database
 
 ## Running the Program
 
@@ -44,13 +47,20 @@ After setup, you can start the program with the following command:
 pipenv run start
 ```
 
+## Docker
+
+You can use the provided dockerfile to create a runnable image of this application.
+
 ## Logging
 
 The application logs important events such as connection open/close and error events to help in troubleshooting.
 
-## To Implement
+## Testing
 
-There are placeholders in the code for sending events to a database and handling request exceptions. These sections should be completed as per the requirements of your specific application.
+this application uses unitest with the unittest python library. you can run these tests with the following command:
+```
+python -m unittest discover
+```
 
 ## License
 
