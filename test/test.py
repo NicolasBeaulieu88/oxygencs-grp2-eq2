@@ -2,6 +2,7 @@ import unittest
 from unittest.mock import patch, MagicMock
 from src.main import App
 
+
 class TestYourClass(unittest.TestCase):
     URL = "http://159.203.50.162"
     TOKEN = "e7026c64578833bfc1ba"
@@ -10,7 +11,7 @@ class TestYourClass(unittest.TestCase):
     T_MIN = 10
 
     def setUp(self):
-        self.app = App()  
+        self.app = App()
         # Mock the hub connection
         self.app.HOST = self.URL
         self.app.TOKEN = self.TOKEN
@@ -18,9 +19,7 @@ class TestYourClass(unittest.TestCase):
         self.app.T_MAX = self.T_MAX
         self.app.T_MIN = self.T_MIN
 
-        
-
-    @patch('requests.get')
+    @patch("requests.get")
     def test_send_action_to_hvac(self, mock_get):
         # Mock the response from requests.get
         mock_response = MagicMock()
@@ -29,18 +28,18 @@ class TestYourClass(unittest.TestCase):
 
         # Test send_action_to_hvac
         self.app.send_action_to_hvac("TurnOnAc")
-        mock_get.assert_called_once_with(self.URL+"/api/hvac/"+self.TOKEN+"/TurnOnAc/10")  
+        mock_get.assert_called_once_with(
+            self.URL + "/api/hvac/" + self.TOKEN + "/TurnOnAc/10"
+        )
 
-    
-    #Does not work
-    @patch('psycopg2.connect')
+    # Does not work
+    @patch("psycopg2.connect")
     def test_save_event_to_database(self, mock_connect):
         # Mock the database connection and cursor
         mock_cursor = MagicMock()
         mock_connect.return_value.cursor.return_value = mock_cursor
         self.app._db_connection = mock_connect
         self.app._db_connection is not None
-
 
         # Test save_event_to_database
         self.app.save_event_to_database("2014-01-01", "10")
@@ -50,5 +49,6 @@ class TestYourClass(unittest.TestCase):
         )
         mock_connect.commit.assert_called_once()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()
