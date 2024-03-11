@@ -57,7 +57,7 @@ The application logs important events such as connection open/close and error ev
 
 ## Testing
 
-this application uses unitest with the unittest python library. you can run these tests with the following command:
+this application uses unitest with the unit test python library. you can run these tests with the following command:
 ```
 python -m unittest discover
 ```
