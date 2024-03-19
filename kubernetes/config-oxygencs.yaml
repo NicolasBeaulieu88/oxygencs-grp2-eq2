@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-oxygencs
+data:
+  HOST: http://159.203.50.162
+  T_MAX: "20"
+  T_MIN: "10"
+  DATABASE_URL: 157.230.69.113
