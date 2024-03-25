@@ -93,7 +93,6 @@ jobs:
 
     - name: Deploy to Kubernetes
       run: |
-#        sed -i 's/TAG/${{ github.run_id }}/g' kubernetes/oxygencs-deployment.yaml
         kubectl apply -f kubernetes/oxygencs-deployment.yaml --kubeconfig ./kubeconfig.yaml
         kubectl rollout status deployment/oxygencs --kubeconfig ./kubeconfig.yaml
       env:
