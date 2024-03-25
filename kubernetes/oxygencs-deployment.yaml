@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: oxygencs
-        image: santiagochiappe/log680_oxygencs:latest
+        image: santiagochiappe/log680_oxygencs:TAG
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
