@@ -5,7 +5,7 @@ metadata:
   labels:
     app: oxygencs-app
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: oxygencs-app
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: oxygencs
-        image: santiagochiappe/log680_oxygencs
+        image: santiagochiappe/log680_oxygencs:TAG
         ports:
         - containerPort: 8080
         resources:
